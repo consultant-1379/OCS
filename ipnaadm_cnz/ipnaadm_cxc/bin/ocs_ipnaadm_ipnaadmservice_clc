@@ -1,0 +1,165 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Information about the application 
+#
+#
+#
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+prog="ocs_ipnaadmd"
+apgpiddir=/var/run/apg
+apglockdir=/var/lock/subsys/apg
+compnamedir=/var/lib/apg
+apgbindir=/opt/ap/ocs/bin
+args=""
+
+binary=$apgbindir/$prog
+pidfile=$apgpiddir/$prog.pid
+lockfile=$apglockdir/$prog.lock
+compnamefile=$compnamedir/"$prog"_comp_name
+logpath=/var/log/acs/tra/logging
+logfile=$logpath/OCS_IPNAADM.log
+BLOCK_NAME=IPNAADMBIN
+
+
+CMD_PARMTOOL="/opt/ap/apos/bin/parmtool/parmtool"
+CMD_HWTYPE='/opt/ap/apos/conf/apos_hwtype.sh'
+AMF_DAEMON='/opt/ap/apos/conf/apos_cfgd'
+CMD_SW_ACTVT_CHK='/opt/ap/apos/conf/apg_sw_activation_check.py'
+CMD_PYTHON='/usr/bin/python'
+
+HW_TYPE=$( $CMD_HWTYPE)
+
+getApType() {
+  local AP_TYPE=''
+  # in case of vAPG, fetch the ap_type using parmtool
+  # For vAPG, as of now only AP1 is supported(default configuration)
+  AP_TYPE=$( $CMD_PARMTOOL get --item-list ap_type 2>/dev/null | \
+  awk -F'=' '{print $2}')
+  if [ -z "$AP_TYPE" ]; then
+    AP_TYPE="AP1"
+  fi
+  echo "$AP_TYPE"
+}
+
+
+#create directories
+#
+/bin/mkdir -p $apgpiddir
+/bin/mkdir -p $apglockdir
+/bin/mkdir -p $compnamedir
+
+RETVAL=0
+
+log() {
+        /bin/logger -t $prog "$@"
+}
+
+stop() {
+	
+	log "Stopping $prog: "
+	local AP_TYPE=$(getApType)
+        $CMD_PYTHON $CMD_SW_ACTVT_CHK -c $BLOCK_NAME -a $AP_TYPE -t $HW_TYPE &>/dev/null
+        if [ $? -ne 0 ]; then
+                log "Stopping dummy service for apos_cfgd"
+                binary=$AMF_DAEMON # CLC changes to stop dummy service
+        fi
+	pidofproc -p $pidfile $binary #check if the application is really come down.
+        RETVAL=$?
+	if [ $RETVAL != 0 ]; then
+		rm -f $compnamefile
+		rm -f $lockfile
+		rm -f $pidfile
+		RETVAL=0
+		return $RETVAL
+	fi
+
+        killproc -p $pidfile $binary -USR2
+        RETVAL=$?
+        if [ $RETVAL -eq 0 ]; then
+                usleep 1000000 #sleep for a sec for the application to do gracefull shutdown.
+			       #sleep timeout is application dependent.
+                pidofproc -p $pidfile $binary #check if the application has really come down.
+		RETVAL=$?
+                if [ $RETVAL != 0 ]; then
+                        rm -f $compnamefile
+                        rm -f $lockfile
+			rm -f $pidfile
+			RETVAL=0
+                        return $RETVAL
+                fi
+                gstack $(pidof ocs_ipnaadmd) > /var/log/acs/tra/OCS_IPNAADM_GSTACK_$(pidof ocs_ipnaadmd)
+                killproc -p $pidfile $binary -KILL #Force kill if the applcation is not yet come down.
+                RETVAL=$?
+                if [ $RETVAL -eq 0 ] || [ $RETVAL -eq 7 ]; then
+                        rm -f $compnamefile
+                        rm -f $lockfile
+                        rm -f $pidfile
+                        RETVAL=0
+                fi
+        else
+		log "Sending USR2 Failed"
+	fi
+
+	return $RETVAL
+}
+
+
+instantiate() {
+  # get the ap type : AP1 or AP2
+  local AP_TYPE=$(getApType)
+
+  $CMD_PYTHON $CMD_SW_ACTVT_CHK -c $BLOCK_NAME -a $AP_TYPE -t $HW_TYPE &>/dev/null
+
+	if [ $? -eq 0 ]; then
+	 #Start Service
+	  [ -x $binary ] || exit 5
+	  log "AMF Instantiating $prog: "
+	  echo $SA_AMF_COMPONENT_NAME > $compnamefile
+	  start_daemon -p $pidfile $binary $args
+	else
+	  prog="$prog"
+	  $AMF_DAEMON -n $prog -l $logfile -f $lockfile
+	fi
+
+  RETVAL=$?
+  if [ $RETVAL -eq 0 ]; then
+    touch $lockfile
+  fi
+
+  return $RETVAL
+}
+
+status() {
+	pidofproc -p $pidfile $binary
+	RETVAL=$?
+	return $RETVAL
+}
+
+case "$1" in
+
+  instantiate)
+	instantiate
+	RETVAL=$?
+	;;
+
+  cleanup)
+	stop
+	RETVAL=$?
+	;;
+
+  status)
+	status
+	RETVAL=$?
+	;;
+
+  *)
+	echo "Usage: $0 {instantiate|cleanup|status}"
+	RETVAL=2
+esac
+
+exit $RETVAL
+

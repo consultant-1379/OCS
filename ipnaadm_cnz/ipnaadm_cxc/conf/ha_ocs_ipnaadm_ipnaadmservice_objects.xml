@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<imm:IMM-contents>
+	<object class="SaAmfAppBaseType">
+                <dn>safAppType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSGBaseType">
+                <dn>safSgType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSUBaseType">
+                <dn>safSuType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfCompBaseType">
+                <dn>safCompType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSvcBaseType">
+                <dn>safSvcType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfCSBaseType">
+                <dn>safCSType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSvcType">
+                <dn>safVersion=4.0.0,safSvcType=APG_IPNAADM</dn>
+        </object>
+	<object class="SaAmfAppType">
+                <dn>safVersion=4.0.0,safAppType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfApptSGTypes</name>
+                        <value>safVersion=4.0.0,safSgType=APG_IPNAADM</value>
+                </attr>
+        </object>
+        <object class="SaAmfSGType">
+                <dn>safVersion=4.0.0,safSgType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSgtRedundancyModel</name>
+                        <value>1</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtValidSuTypes</name>
+                        <value>safVersion=4.0.0,safSuType=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtDefAutoAdjustProb</name>
+                        <value>10000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtDefCompRestartProb</name>
+                        <value>60000000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtDefCompRestartMax</name>
+                        <value>2</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtDefSuRestartProb</name>
+                        <value>60000000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfSgtDefSuRestartMax</name>
+                        <value>0</value>
+                </attr>
+        </object>
+	<object class="SaAmfSUType">
+                <dn>safVersion=4.0.0,safSuType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSutIsExternal</name>
+                        <value>0</value>
+                </attr>
+                <attr>
+                        <name>saAmfSutDefSUFailover</name>
+                        <value>1</value>
+                </attr>
+                <attr>
+                        <name>saAmfSutProvidesSvcTypes</name>
+                        <value>safVersion=4.0.0,safSvcType=APG_IPNAADM</value>
+                </attr>
+        </object>
+	<object class="SaAmfCompType">
+                <dn>safVersion=4.0.0,safCompType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfCtCompCategory</name>
+                        <value>1</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtSwBundle</name>
+                        <value>safSmfBundle=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefClcCliTimeout</name>
+                        <value>10000000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefCallbackTimeout</name>
+                        <value>10000000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtRelPathInstantiateCmd</name>
+                        <value>ocs_ipnaadm_ipnaadmservice_clc</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefInstantiateCmdArgv</name>
+                        <value>instantiate</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtRelPathCleanupCmd</name>
+                        <value>ocs_ipnaadm_ipnaadmservice_clc</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefCleanupCmdArgv</name>
+                        <value>cleanup</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefRecoveryOnError</name>
+                        <value>2</value>
+                </attr>
+                <attr>
+                        <name>saAmfCtDefDisableRestart</name>
+                        <value>0</value>
+                </attr>
+        </object>
+	<object class="SaAmfCSType">
+                <dn>safVersion=4.0.0,safCSType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSutCompType">
+                <dn>safMemberCompType=safVersion=4.0.0\,safCompType=APG_IPNAADM,safVersion=4.0.0,safSuType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfSvcTypeCSTypes">
+                <dn>safMemberCSType=safVersion=4.0.0\,safCSType=APG_IPNAADM,safVersion=4.0.0,safSvcType=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfCtCsType">
+                <dn>safSupportedCsType=safVersion=4.0.0\,safCSType=APG_IPNAADM,safVersion=4.0.0,safCompType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfCtCompCapability</name>
+                        <value>1</value>
+                </attr>
+        </object>
+        <object class="SaAmfHealthcheckType">
+                <dn>safHealthcheckKey=ocs_ipnaadmd_hck,safVersion=4.0.0,safCompType=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfHctDefPeriod</name>
+                        <value>10000000000</value>
+                </attr>
+                <attr>
+                        <name>saAmfHctDefMaxDuration</name>
+                        <value>10000000000</value>
+                </attr>
+        </object>
+        <object class="SaAmfApplication">
+                <dn>safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfAppType</name>
+                        <value>safVersion=4.0.0,safAppType=APG_IPNAADM</value>
+                </attr>
+        </object>
+	<object class="SaAmfSG">
+                <dn>safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSGType</name>
+                        <value>safVersion=4.0.0,safSgType=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGSuHostNodeGroup</name>
+                        <value>safAmfNodeGroup=SCs,safAmfCluster=myAmfCluster</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGAutoRepair</name>
+                        <value>0</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGAutoAdjust</name>
+                        <value>0</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGNumPrefInserviceSUs</name>
+                        <value>10</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGNumPrefAssignedSUs</name>
+                        <value>10</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGMaxActiveSIsperSU</name>
+                        <value>1</value>
+                </attr>
+                <attr>
+                        <name>saAmfSGMaxStandbySIsperSU</name>
+                        <value>1</value>
+                </attr>
+        </object>
+	<object class="SaAmfSI">
+                <dn>safSi=APG_SI_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSvcType</name>
+                        <value>safVersion=4.0.0,safSvcType=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSIProtectedbySG</name>
+                        <value>safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSIRank</name>
+                        <value>2</value>
+                </attr>
+        </object>
+        <object class="SaAmfSIDependency">
+                <dn>safDepend=safSi=APG_SI_Agent\,safApp=APG_Agent,safSi=APG_SI_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfToleranceTime</name>
+                        <value>0</value>
+                </attr>
+        </object>
+        <object class="SaAmfCSI">
+                <dn>safCsi=APG_CSI_IPNAADM,safSi=APG_SI_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfCSType</name>
+                        <value>safVersion=4.0.0,safCSType=APG_IPNAADM</value>
+                </attr>
+        </object>
+        <object class="SaSmfSwBundle">
+                <dn>safSmfBundle=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfNodeSwBundle">
+                <dn>safInstalledSwBundle=safSmfBundle=APG_IPNAADM,safAmfNode=SC-1,safAmfCluster=myAmfCluster</dn>
+                <attr>
+                        <name>saAmfNodeSwBundlePathPrefix</name>
+                        <value>/opt/ap/ocs/bin</value>
+                </attr>
+        </object>
+	<object class="SaAmfSU">
+                <dn>safSu=APG_SU1_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSUType</name>
+                        <value>safVersion=4.0.0,safSuType=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSUHostNodeOrNodeGroup</name>
+                        <value>safAmfNode=SC-1,safAmfCluster=myAmfCluster</value>
+                </attr>
+                <attr>
+                        <name>saAmfSURank</name>
+                        <value>1</value>
+                </attr>
+                <attr>
+                        <name>saAmfSUAdminState</name>
+                        <value>3</value>
+                </attr>
+        </object>
+        <object class="SaAmfComp">
+                <dn>safComp=APG_Comp_IPNAADM,safSu=APG_SU1_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfCompType</name>
+                        <value>safVersion=4.0.0,safCompType=APG_IPNAADM</value>
+                </attr>
+        </object>
+        <object class="SaAmfCompCsType">
+                <dn>safSupportedCsType=safVersion=4.0.0\,safCSType=APG_IPNAADM,safComp=APG_Comp_IPNAADM,safSu=APG_SU1_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+        </object>
+        <object class="SaAmfNodeSwBundle">
+                <dn>safInstalledSwBundle=safSmfBundle=APG_IPNAADM,safAmfNode=SC-2,safAmfCluster=myAmfCluster</dn>
+                <attr>
+                        <name>saAmfNodeSwBundlePathPrefix</name>
+                        <value>/opt/ap/ocs/bin</value>
+                </attr>
+        </object>
+	<object class="SaAmfSU">
+                <dn>safSu=APG_SU2_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfSUType</name>
+                        <value>safVersion=4.0.0,safSuType=APG_IPNAADM</value>
+                </attr>
+                <attr>
+                        <name>saAmfSUHostNodeOrNodeGroup</name>
+                        <value>safAmfNode=SC-2,safAmfCluster=myAmfCluster</value>
+                </attr>
+                <attr>
+                        <name>saAmfSURank</name>
+                        <value>2</value>
+                </attr>
+                <attr>
+                        <name>saAmfSUAdminState</name>
+                        <value>3</value>
+                </attr>
+        </object>
+        <object class="SaAmfComp">
+                <dn>safComp=APG_Comp_IPNAADM,safSu=APG_SU2_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+                <attr>
+                        <name>saAmfCompType</name>
+                        <value>safVersion=4.0.0,safCompType=APG_IPNAADM</value>
+                </attr>
+        </object>
+        <object class="SaAmfCompCsType">
+                <dn>safSupportedCsType=safVersion=4.0.0\,safCSType=APG_IPNAADM,safComp=APG_Comp_IPNAADM,safSu=APG_SU2_IPNAADM,safSg=APG_2NSG_IPNAADM,safApp=APG_IPNAADM</dn>
+        </object>
+</imm:IMM-contents>

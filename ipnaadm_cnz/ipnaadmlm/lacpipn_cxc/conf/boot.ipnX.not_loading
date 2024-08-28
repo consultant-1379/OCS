@@ -1,0 +1,9 @@
+[CURRENT]
+os=ipnaos.babsc.r3a01,CXC1060053R3A01,IPNAOS
+dev=ipna_inet.babsc.r1g01,CXC1060087R1G01,INETI
+app=lacpipn.babsc.r1e01,CXC1060055R1E01,LACPIPN
+app=ftpc.babsc.r1a01,CXC1060054R1A01,FTPC
+app=ocitsi.babsc.r1j01,CXC1060074R1J01,OCITSI
+
+[IPNAOS]
+cp_loading=0

@@ -1,0 +1,48 @@
+csm-version: '1.0'
+components:
+- uid: ocs.ipnaadm
+  name: ocs-ipnaadm
+  description: OCS IPNAADM component
+  availability-manager: AMF
+  software:
+    sdp: ERIC-OCS_IPNAADMBIN-CXC1372162
+  supersedes:
+  - base-component: ERIC-APG_IPNAADM
+  availability-properties:
+    control-policy:
+      type: ADVANCED
+    multiplicity-policy:
+      node-active: ONE
+      node-standby: ONE
+      node-active-standby: 'NO'
+      cluster-active: ONE
+      cluster-standby: ONE
+    lifecycle-control:
+      prefix: /opt/ap/ocs/bin
+      start: ocs_ipnaadm_ipnaadmservice_clc instantiate
+      stop: ocs_ipnaadm_ipnaadmservice_clc cleanup
+      monitor-keys:
+      - key: ocs_ipnaadmd_hck
+        period: 240s
+        timeout: 180s
+      promote-demote-timeout: 200s
+      migrate-timeout: 60s
+      recovery-policy: COMPONENT_RESTART
+      start-stop-timeout: 100s
+  constraints:
+    installation:
+      after:
+      - component: acs.lct.lib
+        method: DIFFERENT-STEP
+    upgrade:
+      after:
+      - component: acs.lct.lib
+        method: DIFFERENT-STEP
+  meta-data:
+    component-version: 9.0.2-0
+    deliverable:
+      deployment-package: ocs_ipnaadm-9.0.2-0-deployment-CXC1372129.tar.gz
+      runtime-package: ocs_ipnaadm-9.0.2-0-runtime-CXC1372129.tar.gz
+    software:
+    - file-name: OCS_IPNAADMBIN-CXC1372129_9-R1C.x86_64.sdp
+      bundle-name: ERIC-OCS_IPNAADMBIN-CXC1372129_9-R1C

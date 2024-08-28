@@ -1,0 +1,48 @@
+csm-version: '1.0'
+components:
+- uid: ocs.tocap
+  name: ocs-tocap
+  description: OCS TOCAP component
+  availability-manager: AMF
+  software:
+    sdp: ERIC-OCS_TOCAPBIN-CXC1372165
+  supersedes:
+  - base-component: ERIC-APG_TOCAP
+  availability-properties:
+    control-policy:
+      type: ADVANCED
+    multiplicity-policy:
+      node-active: ONE
+      node-standby: NONE
+      node-active-standby: 'NO'
+      cluster-active: MANY
+      cluster-standby: NONE
+    lifecycle-control:
+      prefix: /opt/ap/ocs/bin
+      start: ocs_tocap_tocapservice_clc instantiate
+      stop: ocs_tocap_tocapservice_clc cleanup
+      monitor-keys:
+      - key: ocs_tocapd_hck
+        period: 240s
+        timeout: 180s
+      promote-demote-timeout: 200s
+      migrate-timeout: 60s
+      recovery-policy: COMPONENT_RESTART
+      start-stop-timeout: 100s
+  constraints:
+    installation:
+      after:
+      - component: acs.lct.lib
+        method: DIFFERENT-STEP
+    upgrade:
+      after:
+      - component: acs.lct.lib
+        method: DIFFERENT-STEP
+  meta-data:
+    component-version: 9.0.5-0
+    deliverable:
+      deployment-package: ocs_tocap-9.0.5-0-deployment-CXC1372165.tar.gz
+      runtime-package: ocs_tocap-9.0.5-0-runtime-CXC1372165.tar.gz
+    software:
+    - file-name: OCS_TOCAPBIN-CXC1372165_9-R1F.x86_64.sdp
+      bundle-name: ERIC-OCS_TOCAPBIN-CXC1372165_9-R1F

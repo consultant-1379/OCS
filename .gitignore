@@ -1,0 +1,56 @@
+# Compiled source #
+###################
+*.obj
+*.d
+*.gcno
+*.o
+
+# Packages #
+############
+*.rpm
+*.sdp
+*.tar.gz
+*.tgz
+*.bin
+*.exe
+*.tar
+*.zip
+*.jar
+
+# Windows Specific #
+####################
+*.ccscc
+*.dsp
+*.dsw
+*.vcproj
+
+# application binaries
+# /tocap_cnz/
+tocap_cnz/doc/
+tocap_cnz/install/
+tocap_cnz/ocs_tocap.dsw
+tocap_cnz/ocs_tocap.ncb
+tocap_cnz/ocs_tocap.opt
+tocap_cnz/ocs_tocap.sln
+tocap_cnz/ocs_tocap.suo
+tocap_cnz/ocs_tocap.vssscc
+tocap_cnz/tocap_cxa/
+tocap_cnz/tocap_cxc_4/
+tocap_cnz/tocap_cxc_5/
+tocap_cnz/tocap_cxc/doc/
+tocap_cnz/tocap_cxc/bin/.debug/ocs_tocapd_dbg
+tocap_cnz/tocap_cxc/bin/ocs_tocapd
+tocap_cnz/tocap_cxc/bin/t_tocap
+tocap_cnz/tocap_cxc/bin/t_dsd
+tocap_cnz/tocap_adm_caa/test/New*
+tocap_cnz/tocap_caa/
+
+# /ipnaadm_cnz/
+ipnaadm_cnz/ipnaadmbin_cxc/
+ipnaadm_cnz/ipnaadmbin_cxc_4/
+ipnaadm_cnz/ipnaadm_cxc/bin/.debug/ipnaadm_dbg
+ipnaadm_cnz/ipnaadm_cxc/bin/.debug/ocs_ipnaadmd_dbg
+ipnaadm_cnz/ipnaadm_cxc/bin/ipnaadm
+ipnaadm_cnz/ipnaadm_cxc/bin/ocs_ipnaadmd
+
+### END ### -->

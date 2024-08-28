@@ -1,0 +1,2 @@
+#!/bin/sh
+/opt/ap/ocs/bin/ocs_ipnaadmd noservice &

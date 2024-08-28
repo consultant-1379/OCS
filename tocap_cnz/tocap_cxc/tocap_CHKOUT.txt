@@ -1,0 +1,2 @@
+T:\ntocs\tocap_cnz\tocap_cxc\bin\ocs_tocapd
+T:\ntocs\tocap_cnz\tocap_cxc\packages\rpm\OCS_TOCAP-CXC1372058-R1A08.x86_64.rpm
